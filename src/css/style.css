@@ -1,0 +1,33 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace v "robotlegs.test.viewFrame";
+
+
+
+
+.lblTextFrame
+{
+	verticalAlign: middle;
+	fontSize: 14;
+	src: url("../assets/fonts/FromWhereYouAre.ttf");
+	fontFamily: sketchBlock;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+	text-shadow: 1px 1px 0 #000;
+	outline-style: groove;
+}
+
+.textFrameInactive
+{	
+	backgroundAlpha: 0.0;
+	borderVisible: false;
+}
+
+.textFrameSelected
+{	
+	backgroundAlpha: 0.0;
+	borderColor: #c2c2c2;
+	border-style: dashed;
+	borderWeight: 3;
+	cornerRadius: 5;
+}
+

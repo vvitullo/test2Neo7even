@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" 
+				   width="50" height="50" cornerRadius="6" dropShadowVisible="false"
+				   backgroundColor="#EDEDED" borderVisible="false"
+				   buttonMode="true" useHandCursor="true"
+				   backgroundColor.selected="#D3D2D2" borderStyle.selected="inset"
+				   borderVisible.selected="true"
+				   backgroundColor.moveover="#FFFFFF" borderStyle.moveover="inset"
+				   borderVisible.moveover="true"
+				   mouseOver="buttonOver(event)" mouseOut="buttonOut(event)" mouseDown="buttonDown(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			public var iconButton:Class;
+			
+			public var nameButton:String;
+			
+			public function changeState(currentValue:String):void{
+				if(currentValue == nameButton)
+				{
+					this.currentState = "selected";
+				}
+				else
+				{
+					this.currentState = "normal";
+				}
+			}
+			
+			private function buttonOver(event:MouseEvent):void{
+				if(this.currentState != "selected"){
+					this.currentState = "moveover";
+				}
+			}
+			
+			private function buttonOut(event:MouseEvent):void{
+				if(this.currentState != "selected"){
+					this.currentState = "normal";					
+				}
+			}
+			
+			private function buttonDown(event:MouseEvent):void{
+				this.currentState = "selected";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="selected"/>
+		<s:State name="moveover"/>
+	</s:states>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Image horizontalCenter="0" source="{iconButton}" verticalCenter="0"
+			 width="32" height="32"/>
+	
+	
+	
+</s:BorderContainer>

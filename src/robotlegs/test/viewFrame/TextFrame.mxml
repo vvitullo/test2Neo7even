@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:viewApp="robotlegs.test.viewApp.*"
+				   x="{textComponent.xValue}" y="{textComponent.yValue}"
+				   width="{textComponent.wValue}" height="{textComponent.hValue}"
+				   doubleClickEnabled="true" initialize="initComp()"
+				  
+				   styleName.normal="textFrameInactive"
+				   styleName.selected="textFrameSelected"
+				   styleName.editable="textFrameSelected"
+				   styleName.resizable="textFrameSelected" xmlns:viewFrame="robotlegs.test.viewFrame.*">
+	
+	<fx:Style source="/css/style.css"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import robotlegs.test.model.vo.TextComponent;
+			
+			[Bindable]
+			//public var textValue:String = "Sample Text Fram";
+			
+			[Bindable]
+			public var textComponent:TextComponent;
+			
+			//public var checkClickedOnMe:Boolean = false;
+			
+			private function initComp():void
+			{
+				//this.parentDocument.addEventListener(MouseEvent.CLICK, mouseClickOnParent);
+				//this.addEventListener(MouseEvent.CLICK, mouseClickOnMe);
+			}
+			
+
+
+/*
+			private function mouseClickOnMe(event:MouseEvent):void
+			{
+				trace("mouseClickOnMe"+event.currentTarget);
+				checkClickedOnMe = true;				
+			}
+			
+			private function mouseClickOnParent(event:MouseEvent):void
+			{
+				trace("mouseClickOnParent"+event.currentTarget);
+				if(!checkClickedOnMe){   
+					this.currentState = "normal";	
+				}
+				else{
+					checkClickedOnMe = false; 
+				}			
+			}
+*/
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="selected"/>
+		<s:State name="editable"/>
+		<s:State name="resizable"/>
+	</s:states>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<s:Label id="lbl_text_frame" left.normal="10" left="7" right="7" top.normal="10" top="7" bottom="0" color="#4978FF"
+			 fontSize="{textComponent.hValue/2}" fontWeight="bold" text="{textComponent.textValue}"
+			 verticalAlign="top">
+
+		<s:filters>
+			<s:DropShadowFilter blurX="7" blurY="7" distance="0" quality="1" strength="7" color="#FFFFFF"/>
+			<s:DropShadowFilter distance="3" angle="45" alpha="0.5" color="#000000"/>
+		</s:filters>
+
+	</s:Label>
+	<s:TextInput id="txt_text_frame" includeIn="editable" left="3"  top="3" right="7" bottom="7"
+				 borderVisible="false" text="{textComponent.textValue}" fontSize="{textComponent.hValue/2}" />
+	
+	<viewFrame:GraphicsCircleResize id="ui_resize_circle" visible="false" visible.resizable="true" radius="4" width="8" height="8" color="#4978FF"
+								  x="{textComponent.wValue-8}" y="{textComponent.hValue-8}" />
+
+	
+</s:BorderContainer>

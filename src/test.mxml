@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:test="robotlegs.test.*"
+			   xmlns:viewMenu="robotlegs.test.viewMenu.*"
+			   xmlns:viewFrame="robotlegs.test.viewFrame.*"
+			   xmlns:viewApp="robotlegs.test.viewApp.*"
+			   xmlns:viewControlBar="robotlegs.test.viewControlBar.*"
+			   minWidth="800" minHeight="600" creationComplete="init()">
+	<fx:Style source="css/style.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			
+			[Bindable]
+			protected var doc_title:String;
+			
+			import flash.display.Shape;
+			import flash.display.Sprite;
+			import flash.filters.DropShadowFilter;
+			
+			private function init():void
+			{
+				doc_title = "Blank";
+				
+				var dropFill:DropShadowFilter = new DropShadowFilter(0, 45, 0xffffff, 1, 7, 7, 7, 1);
+				var dropShadow:DropShadowFilter = new DropShadowFilter(3, 45, 0x000000, 0.5);
+				
+				var myCircle:UIComponent = new UIComponent();
+				myCircle.filters = new Array(dropFill, dropShadow);
+				myCircle.graphics.beginFill(0x4978FF);
+				myCircle.graphics.drawCircle(30, 30, 4);
+				myCircle.graphics.endFill();
+				
+				//blackboard.addElement(myCircle);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<test:TestContext contextView="{this}" />
+	</fx:Declarations>
+	
+	<s:HGroup width="100%" height="100%" gap="0">
+		<s:BorderContainer width="90" height="100%" backgroundColor="#EDEDED">
+
+			<viewMenu:TextButton y="156" horizontalCenter="0" />
+			<viewMenu:ResizeButton y="94" horizontalCenter="0">
+			</viewMenu:ResizeButton>
+			<viewMenu:SelectButton y="32" horizontalCenter="0">
+			</viewMenu:SelectButton>
+			
+		</s:BorderContainer>
+		<s:VGroup width="100%" height="100%" gap="0">
+
+				<s:BorderContainer width="100%" height="35" backgroundColor="black"  >
+					<s:Label id="lbl_title" x="10" y="10" color="#FFFFFF" fontSize="13"
+							 fontWeight="bold" text="{doc_title}"/>
+
+					<viewControlBar:SaveButton id="btn_save" y="10" right="55"/>
+					<viewControlBar:DeleteButton id="btn_delete" y="10" right="20"/>
+					
+				</s:BorderContainer>
+			<viewApp:Blackboard id="blackboard" width="100%" height="100%">
+				<viewFrame:GraphicsCircleResize right="0" bottom="0" radius="4" width="30" height="30" color="#4978FF"/>
+			</viewApp:Blackboard>
+
+		</s:VGroup>
+	</s:HGroup>
+
+	
+</s:Application>
